@@ -10,6 +10,8 @@ int main()
 	string givenString;
 	string number;
 	string key;
+	string tempKey;
+	string result;
 	//inputFile.open("input.txt");
 	inputFile.open("sample.txt");
 	int sizeOfString;
@@ -59,29 +61,50 @@ int main()
 	
 	for(int loopCounter = 0; loopCounter < numberOfSequence ; loopCounter++)
 	{
-		key = givenString.substr(loopCounter, length);
+		tempKey = givenString.substr(loopCounter, length);
+		if(key.empty())
+		{
+			key = tempKey;
+		}
+		else
+		{
+			int i = Count(tempKey, result);
+			if( i <= 0)
+			{	
+				key = tempKey;
+			}
+			else
+			{
+				//cout << "match" << endl;
+				continue;
+			}
+		}
 		numbersOfOccurance = Count( key, givenString );
+
 		if(n == 0)
 		{
 			n = numbersOfOccurance;
+			result = key;
 		}
 		else
 		{
 			if(n < numbersOfOccurance)
 			{
 				n = numbersOfOccurance;
+				result = key;
 			}
-			if(n == numbersOfOccurance)
+			else
 			{
-
+				if(n == numbersOfOccurance)
+				{
+					result.append(",");
+					result.append(key);
+				}
 			}
 		}
-		if(n == 3)
-			cout << key;
-		cout << n << endl;
 	}
 	
-
+	cout << result << endl;
 	//givenString.resize(length);
 	//cout << givenString;
 	return 0;
