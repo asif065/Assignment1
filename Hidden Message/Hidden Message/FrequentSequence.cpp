@@ -3,26 +3,32 @@
 #include <string>
 using namespace std;
 
+int Count( const std::string & str, const std::string & obj );
 int main()
 {
 	ifstream inputFile;
-	string line;
-	inputFile.open("input.txt");
-	char givenString[1000];
+	string givenString;
+	string number;
+	string key;
+	//inputFile.open("input.txt");
+	inputFile.open("sample.txt");
 	int sizeOfString;
 	char givenNumber[2];
 	int length;
+	int numberOfSequence;
+	int numbersOfOccurance;
+	int n = 0;
 	
 	if(inputFile.is_open())
 	{
-		//while(getline(inputFile, line))
+		//while(getline(inputFile, givenString))
 		//{
-			//cout << line << endl;
-		getline(inputFile, line);
-		strncpy (givenString, line.c_str(), sizeof(givenString));
-		sizeOfString = line.size();
-		getline(inputFile, line);
-		strncpy (givenNumber, line.c_str(), sizeof(givenNumber));
+			//cout << givenString << endl;
+		getline(inputFile, givenString);
+		//strncpy (givenString, givenString.c_str(), sizeof(givenString));
+		sizeOfString = givenString.size();
+		getline(inputFile, number);
+		strncpy (givenNumber, number.c_str(), sizeof(givenNumber));
 		//}
 	}
 	
@@ -48,7 +54,47 @@ int main()
 
 	/*cout << sizeOfString << endl;
 	cout << givenString[sizeOfString-1] << endl;*/
+	
+	numberOfSequence = (sizeOfString - length) + 1;
+	
+	for(int loopCounter = 0; loopCounter < numberOfSequence ; loopCounter++)
+	{
+		key = givenString.substr(loopCounter, length);
+		numbersOfOccurance = Count( key, givenString );
+		if(n == 0)
+		{
+			n = numbersOfOccurance;
+		}
+		else
+		{
+			if(n < numbersOfOccurance)
+			{
+				n = numbersOfOccurance;
+			}
+			if(n == numbersOfOccurance)
+			{
 
+			}
+		}
+		if(n == 3)
+			cout << key;
+		cout << n << endl;
+	}
+	
 
+	//givenString.resize(length);
+	//cout << givenString;
 	return 0;
+}
+
+int Count( const std::string & str, 
+           const std::string & obj ) {
+    int n = 0;
+    std::string ::size_type pos = 0;
+    while( (pos = obj.find( str, pos )) 
+                 != std::string::npos ) {
+    	n++;
+    	pos += str.size();
+    }
+    return n;
 }
