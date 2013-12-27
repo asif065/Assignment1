@@ -12,8 +12,8 @@ int main()
 	string key;
 	string tempKey;
 	string result;
-	//inputFile.open("input.txt");
-	inputFile.open("sample.txt");
+	inputFile.open("input.txt");
+	//inputFile.open("sample.txt");
 	int sizeOfString;
 	char givenNumber[2];
 	int length;
@@ -97,7 +97,7 @@ int main()
 			{
 				if(n == numbersOfOccurance)
 				{
-					result.append(",");
+					result.append(" ");
 					result.append(key);
 				}
 			}
